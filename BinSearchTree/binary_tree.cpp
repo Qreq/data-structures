@@ -29,14 +29,25 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 	}
 	return tree;
 }
+
+void pre_order(BinTreeNode* tree){
+	cout << tree->value << ",";
+	if (tree->left != NULL) pre_order(tree->left);
+	if (tree->right != NULL) pre_order(tree->right);
+}
+
 int main(){
+	/*
+	 * WORDS ARE NOT SET INTO PROPERTIES
+	 */
 	vector<string> words = {"This", "is", "the","first","stage"};
 	BinTreeNode* binarytree = NULL;
 	for (int i = 0; i < words.size();i++){
 		string word = words[i];
 		binarytree = insert_node(binarytree,word);
 	}
-	
+	cout << "Printing Preorder ..." << endl;
+	pre_order(binarytree);
 	//cout << "Root Node is" << binarytree->value << endl;
 	return 0;
 }
