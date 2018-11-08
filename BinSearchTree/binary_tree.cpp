@@ -3,6 +3,13 @@
 #include <iostream>
 #include "BinTreeNode.hpp"
 
+/*
+ * 
+ *REFERENCE: insert_node function: https://cumoodle.coventry.ac.uk/pluginfile.php/2300410/mod_resource/content/0/Binary%20Search%20Tree%20in%20C%2B%2B.cpp
+ *REFERENCE: pre_order function: Week 5 Lecture - Trees, Slide 20
+ * 
+ */
+
 using namespace std;
 
 BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
