@@ -1,0 +1,4 @@
+To run main code:
+	g++ --std=c++14 main.cpp BinTreeNode.cpp BinTreeNode.hpp -o main && ./main
+To run Unit Tests:
+	g++ --std=c++14 UT-INIT.cpp UNITTESTS.cpp BinTreeNode.cpp -o tests && ./tests
