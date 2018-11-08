@@ -12,17 +12,21 @@
 
 using namespace std;
 
-BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
+BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert, int count){
 	if (tree == NULL){
 		tree = new BinTreeNode(node_to_insert);
+		tree->frequency_of_node += count;
 	}
 	else{
+		if (tree->value == node_to_insert){
+			count++;
+		}
 		if (tree->value > node_to_insert){
 			if (tree->left == NULL){
 				tree->left = new BinTreeNode(node_to_insert);
 			}
 			else{
-				insert_node(tree->left,node_to_insert);
+				insert_node(tree->left,node_to_insert,count);
 			}
 		}
 		else{
@@ -30,7 +34,8 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 				tree->right = new BinTreeNode(node_to_insert);
 			}
 			else{
-				insert_node(tree->right,node_to_insert);
+				if
+				insert_node(tree->right,node_to_insert,count);
 			}
 		}
 	}
