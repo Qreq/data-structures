@@ -9,24 +9,6 @@ BinTreeNode* binarytree2 = insert_node(NULL,wordset2[0]);
 std::vector<std::string> wordset3 = {"Unit","Tests","are","extremely", "important","when","writing","code"};
 BinTreeNode* binarytree3 = insert_node(NULL,wordset3[0]);
 
-//creates Binary Tree for wordset1
-for (i = 1; i < wordset1.size();i++){
-	std::string word = wordset1[i];
-	insert_node(binarytree1,word);
-}
-
-//creates Binary Tree for wordset2
-for (i = 1; i < wordset2.size();i++){
-	std::string word = wordset2[i];
-	insert_node(binarytree2,word);
-}
-
-//creates Binary Tree for wordset3
-for (i = 1; i < wordset3.size();i++){
-	std::string word = wordset3[i];
-	insert_node(binarytree3,word);
-}
-
 
 TEST_CASE("Binary Tree is created from words in a vector",["binary tree"]){
 	
@@ -38,16 +20,23 @@ TEST_CASE("Nodes are printed in pre order","[pre order]"){
 		std::string word = wordset1[i];
 		insert_node(binarytree1,word);
 	}
-	std::vector<std::string> postorder_list = {};
-	postorder_list = post_order(binarytree1,postorder_list);
-	REQUIRE(postorder_list == {"This","is","first","the","stage"});
+	std::vector<std::string> preorder_list = {};
+	preorder_list = pre_order(binarytree1,preorder_list);
+	REQUIRE(preorder_list == {"This","is","first","the","stage"});
 	
 	//creates Binary Tree for wordset2
 	for (i = 1; i < wordset2.size();i++){
 		std::string word = wordset2[i];
 		insert_node(binarytree2,word);
 	}
-	postorder_list = postorder(binarytree2,postorder_list);
-	REQUIRE(postorder_list == {"I","do","Computer","at","Coventry","enjoy","really","Science","University"})
+	preorder_list = pre_order(binarytree2,preorder_list);
+	REQUIRE(preorder_list == {"I","do","Computer","at","Coventry","enjoy","really","Science","University"})
 	
+	//creates Binary Tree for wordset3
+	for (i = 1; i < wordset3.size();i++){
+		std::string word = wordset3[i];
+		insert_node(binarytree3,word);
+	}
+	preorder_list = pre_order(binarytree2,preorder_list);
+	REQUIRE(preorder_list == {"Unit","are","extremely","code","important","Tests","when","writing"});
 }
