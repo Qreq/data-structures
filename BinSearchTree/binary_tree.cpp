@@ -12,21 +12,23 @@
 
 using namespace std;
 
-BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert, int count){
+BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 	if (tree == NULL){
 		tree = new BinTreeNode(node_to_insert);
-		tree->frequency_of_node += count;
 	}
 	else{
+		/*
 		if (tree->value == node_to_insert){
 			count++;
 		}
+		*/
 		if (tree->value > node_to_insert){
 			if (tree->left == NULL){
 				tree->left = new BinTreeNode(node_to_insert);
 			}
 			else{
-				insert_node(tree->left,node_to_insert,count);
+				//tree->frequency_of_node += count;
+				insert_node(tree->left,node_to_insert);
 			}
 		}
 		else{
@@ -34,14 +36,19 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert, int count){
 				tree->right = new BinTreeNode(node_to_insert);
 			}
 			else{
-				if
-				insert_node(tree->right,node_to_insert,count);
+				//tree->frequency_of_node += count;
+				insert_node(tree->right,node_to_insert);
 			}
 		}
 	}
 	return tree;
 }
 
+void frequency_output(BinTreeNode* tree){
+	cout << "Frequency of Value " << tree->value << ": " << tree->frequency_of_node << endl;
+	if (tree->left != NULL) frequency_output(tree->left);
+	if (tree->right != NULL) frequency_output(tree->right);
+}
 vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
 	//cout << tree->value << " ";
 	preorder_list.emplace_back(tree->value);
@@ -53,9 +60,9 @@ vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
 	}
 	return preorder_list;
 }
-
+/*
 int main(){
-	vector<string> wordset = {"This", "is", "the","first","stage"};
+	vector<string> wordset = {"This", "is", "the","first","stage","the"};
 	BinTreeNode* binarytree = insert_node(0,wordset[0]);
 	for (int i = 1; i < wordset.size();i++){
 		string word = wordset[i];
@@ -72,3 +79,4 @@ int main(){
 	//cout << "Root Node is" << binarytree->value << endl;
 	return 0;
 }
+*/
