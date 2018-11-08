@@ -7,28 +7,22 @@ using namespace std;
 
 BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 	if (tree == NULL){
-		//cout << "got to NULL" << endl;
 		tree = new BinTreeNode(node_to_insert);
-		//cout << "ROOT NODE " << tree->value << endl;
 	}
 	else{
 		if (tree->value > node_to_insert){
 			if (tree->left == NULL){
-				cout << "Left is NULL" << endl;
 				tree->left = new BinTreeNode(node_to_insert);
 			}
 			else{
-				cout << "Left not NULL" << endl;
 				insert_node(tree->left,node_to_insert);
 			}
 		}
 		else{
 			if (tree->right == NULL){
-				cout << "Right is NULL" << endl;
 				tree->right = new BinTreeNode(node_to_insert);
 			}
 			else{
-				cout << "Right not NULL" << endl;
 				insert_node(tree->right,node_to_insert);
 			}
 		}
@@ -36,30 +30,33 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 	return tree;
 }
 
-void pre_order(BinTreeNode* tree){
-	cout << tree->value << " ";
+vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
+	//cout << tree->value << " ";
+	preorder_list.emplace_back(tree->value);
 	if (tree->left != NULL){
-		cout << "Went Left order" << endl;
-		pre_order(tree->left);
+		preorder_list = pre_order(tree->left, preorder_list);
 	} 
 	if (tree->right != NULL){
-		cout << "Went Right order" << endl;
-		pre_order(tree->right);
-	} 
+		preorder_list = pre_order(tree->right, preorder_list);
+	}
+	return preorder_list;
 }
 
 int main(){
-	/*
-	 * WORDS ARE NOT SET INTO PROPERTIES
-	 */
-	vector<string> words = {"This", "is", "the","first","stage"};
-	BinTreeNode* binarytree = insert_node(0,words[0]);
-	for (int i = 1; i < words.size();i++){
-		string word = words[i];
+	vector<string> wordset = {"This", "is", "the","first","stage"};
+	BinTreeNode* binarytree = insert_node(0,wordset[0]);
+	for (int i = 1; i < wordset.size();i++){
+		string word = wordset[i];
 		insert_node(binarytree,word);
 	}
 	cout << "Printing Preorder ..." << endl;
-	pre_order(binarytree);
+	vector<string> preorder_list ={};
+	preorder_list = pre_order(binarytree,preorder_list);
+	for (int i = 0; i < preorder_list.size();i++){
+		string node = preorder_list[i];
+		cout << node << " ";
+	}
+	cout << endl;
 	//cout << "Root Node is" << binarytree->value << endl;
 	return 0;
 }
