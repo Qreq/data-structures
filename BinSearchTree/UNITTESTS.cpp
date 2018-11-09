@@ -34,7 +34,7 @@ TEST_CASE("Nodes are printed in pre order"){
 		insert_node(binarytree2,word);
 	}
 	preorder_result2 = pre_order(binarytree2,preorder_result2);
-	correct_preorder = {"I","do","Computer","at","Coventry","enjoy","really","Science","University"};
+	correct_preorder = {"I","Computer","Coventry","really","do","Science","at","University","enjoy"};
 	REQUIRE(preorder_result2 == correct_preorder);
 	
 	//creates Binary Tree for wordset3
