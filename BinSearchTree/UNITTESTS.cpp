@@ -21,26 +21,28 @@ TEST_CASE("Nodes are printed in pre order"){
 		std::string word = wordset1[i];
 		insert_node(binarytree1,word);
 	}
-	std::vector<std::string> preorder_result = {};
-	preorder_result = pre_order(binarytree1,preorder_result);
+	std::vector<std::string> preorder_result1 = {};
+	std::vector<std::string> preorder_result2 = {};
+	std::vector<std::string> preorder_result3 = {};
+	preorder_result1 = pre_order(binarytree1,preorder_result1);
 	correct_preorder = {"This","is","first","the","stage"};
-	REQUIRE(preorder_result == correct_preorder);
+	REQUIRE(preorder_result1 == correct_preorder);
 	
 	//creates Binary Tree for wordset2
 	for (i = 1; i < wordset2.size();i++){
 		std::string word = wordset2[i];
 		insert_node(binarytree2,word);
 	}
-	preorder_result = pre_order(binarytree2,preorder_result);
+	preorder_result2 = pre_order(binarytree2,preorder_result2);
 	correct_preorder = {"I","do","Computer","at","Coventry","enjoy","really","Science","University"};
-	REQUIRE(preorder_result == correct_preorder);
+	REQUIRE(preorder_result2 == correct_preorder);
 	
 	//creates Binary Tree for wordset3
 	for (i = 1; i < wordset3.size();i++){
 		std::string word = wordset3[i];
 		insert_node(binarytree3,word);
 	}
-	preorder_result = pre_order(binarytree2,preorder_result);
-	correct_preorder = {"Unit","are","extremely","code","important","Tests","when","writing"};
-	REQUIRE(preorder_result == correct_preorder);
+	preorder_result3 = pre_order(binarytree3,preorder_result3);
+	correct_preorder = {"Unit","Tests","are","extremely","code","important","when","writing"};
+	REQUIRE(preorder_result3 == correct_preorder);
 }
