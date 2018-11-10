@@ -47,9 +47,11 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 }
 
 BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
-	if (tree->value == node_to_find || tree == NULL){
-		cout << "Node Found!"
-		return tree;
+	if (tree->value == node_to_find){
+		cout << "Node Found!" << endl;
+	}
+	else if (tree == NULL){
+		cout << "Node Not Found!" << endl;
 	}
 	else if (tree->value > node_to_find){
 		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left << endl;
