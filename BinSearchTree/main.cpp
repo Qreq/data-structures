@@ -1,6 +1,6 @@
 #include "binary_tree.cpp"
-
-int main(){
+#include <fstream>
+void binary_tree_using_vector(){
 	vector<string> wordset = {"This", "is", "the","first","stage","the"};
 	BinTreeNode* binarytree = insert_node(0,wordset[0]);
 	for (int i = 1; i < wordset.size();i++){
@@ -17,4 +17,16 @@ int main(){
 	cout << endl;
 	//cout << "Root Node is" << binarytree->value << endl;
 	return 0;
+}
+void binary_tree_using_textfile(){
+	
+}
+int main(){
+	cout << "USING VECTOR" << endl;
+	cout << "............" << endl;
+	binary_tree_using_vector();
+	cout << "............" << endl;
+	cout << "USING TEXT FILE" << endl;
+	cout << "..............." << endl;
+	binary_tree_using_textfile();
 }
