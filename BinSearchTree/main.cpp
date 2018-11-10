@@ -1,5 +1,12 @@
 #include "binary_tree.cpp"
 #include <fstream>
+#include <boost/algoirthm/string.hpp>
+/*
+ * 
+ * CREDITS:  splits_strings function attributed to Jonathan Boccara
+ * Found here on Solution 2: https://www.fluentcpp.com/2017/04/21/how-to-split-a-string-in-c/
+ * 
+ */
 void binary_tree_using_vector(){
 	vector<string> wordset = {"This", "is", "the","first","stage","the"};
 	BinTreeNode* binarytree = insert_node(0,wordset[0]);
@@ -31,6 +38,16 @@ vector<string> read_from_file(){
 		cout << "Unable to open file:" << filename << endl;
 	}
 	return lines;
+}
+vector<string> split_strings(vector<string> lines){
+	vector<string> result;
+	for (int i= 0; i < lines.size(); i++){
+		string text = lines[i];
+		boost::split(result,text, [](char c){
+			return c == '';
+		})
+	}
+	return result;
 }
 void binary_tree_using_textfile(){
 	vector<string> lines,binarytree;
