@@ -63,8 +63,7 @@ vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
 	return preorder_list;
 }
 
-vector<string> read_from_file(){
-	string filename = "filetoread.txt";
+vector<string> read_from_file(string filename){
 	string line;
 	vector<string> lines;
 	ifstream file (filename);

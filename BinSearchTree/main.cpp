@@ -26,7 +26,7 @@ void binary_tree_using_vector(){
 }
 void binary_tree_using_textfile(){
 	vector<string> lines,binarytree;
-	lines = read_from_file();
+	lines = read_from_file("filetoread.txt");
 	binarytree = split_strings(lines);
 	
 }
