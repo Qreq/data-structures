@@ -1,0 +1,4 @@
+libboost-all-dev
+Catch2
+Latest Version of Ubuntu
+C++14 or Higher
