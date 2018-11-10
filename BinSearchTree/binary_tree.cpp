@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
+#include <boost/algorithm/string.hpp>
 #include "BinTreeNode.hpp"
 
 /*
@@ -60,6 +62,33 @@ vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
 	}
 	return preorder_list;
 }
+
+vector<string> read_from_file(){
+	string filename = "filetoread.txt";
+	string line;
+	vector<string> lines;
+	ifstream file (filename);
+	if (file.is_open()){
+		while (getline(file,line)){
+			lines.emplace_back(line);
+		}
+	}
+	else{
+		cout << "Unable to open file:" << filename << endl;
+	}
+	return lines;
+}
+vector<string> split_strings(vector<string> lines){
+	vector<string> result;
+	for (int i= 0; i < lines.size(); i++){
+		string text = lines[i];
+		boost::split(result,text, [](char c){
+			return c == ' ';
+		});
+	}
+	return result;
+}
+
 /*
 int main(){
 	vector<string> wordset = {"This", "is", "the","first","stage","the"};

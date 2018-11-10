@@ -24,34 +24,10 @@ void binary_tree_using_vector(){
 	cout << endl;
 	//cout << "Root Node is" << binarytree->value << endl;
 }
-vector<string> read_from_file(){
-	string filename = "filetoread.txt";
-	string line;
-	vector<string> lines;
-	ifstream file (filename);
-	if (file.is_open()){
-		while (getline(file,line)){
-			lines.emplace_back(line);
-		}
-	}
-	else{
-		cout << "Unable to open file:" << filename << endl;
-	}
-	return lines;
-}
-vector<string> split_strings(vector<string> lines){
-	vector<string> result;
-	for (int i= 0; i < lines.size(); i++){
-		string text = lines[i];
-		boost::split(result,text, [](char c){
-			return c == ' ';
-		});
-	}
-	return result;
-}
 void binary_tree_using_textfile(){
 	vector<string> lines,binarytree;
 	lines = read_from_file();
+	binarytree = split_strings(lines);
 	
 }
 int main(){
