@@ -78,12 +78,16 @@ vector<string> read_from_file(string filename){
 	return lines;
 }
 vector<string> split_strings(vector<string> lines){
-	vector<string> result;
+	vector<string> result,split_text;
 	for (int i= 0; i < lines.size(); i++){
 		string text = lines[i];
-		boost::split(result,text, [](char c){
+		boost::split(split_text,text, [](char c){
 			return c == ' ';
 		});
+		for (int j = 0; j < split_text.size(); j++){
+			string word = split_text[j];
+			result.emplace_back(word);
+		}
 	}
 	return result;
 }
