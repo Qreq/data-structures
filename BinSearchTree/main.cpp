@@ -18,7 +18,23 @@ void binary_tree_using_vector(){
 	//cout << "Root Node is" << binarytree->value << endl;
 	return 0;
 }
+vector<string> read_from_file(){
+	string filename = "filetoread.txt";
+	vector<string> lines
+	ifstream file (filename);
+	if (file.is_open()){
+		while (getline(myfile,line)){
+			line.emplace_back(line);
+		}
+	}
+	else{
+		cout << "Unable to open file:" << filename << endl;
+	}
+	return lines;
+}
 void binary_tree_using_textfile(){
+	vector<string> lines,binarytree;
+	lines = read_from_file;
 	
 }
 int main(){
