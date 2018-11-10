@@ -1,6 +1,6 @@
 #include "../Catch2/catch.hpp"
 #include "binary_tree.cpp"
-/*
+
 int i;
 std::vector<std::string> correct_preorder = {};
 std::vector<std::string> wordset1 = {"This", "is", "the","first","stage"};
@@ -46,7 +46,7 @@ TEST_CASE("Nodes are printed in pre order"){
 	correct_preorder = {"Unit","Tests","are","extremely","code","important","when","writing"};
 	REQUIRE(preorder_result3 == correct_preorder);
 }
-*/
+
 
 TEST_CASE("File contents are stored into vector AND words are split properly into another vector"){
 	vector<string> result_lines,result_binarytree;
