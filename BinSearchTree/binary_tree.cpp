@@ -9,7 +9,7 @@
  * 
  *REFERENCE: insert_node function: https://cumoodle.coventry.ac.uk/pluginfile.php/2300410/mod_resource/content/0/Binary%20Search%20Tree%20in%20C%2B%2B.cpp
  *REFERENCE: pre_order function: Week 5 Lecture - Trees, Slide 20
- * 
+ *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 14
  */
 
 using namespace std;
@@ -44,6 +44,21 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 		}
 	}
 	return tree;
+}
+
+BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
+	if (tree->value == node_to_find || tree == NULL){
+		cout << "Node Found!"
+		return tree;
+	}
+	else if (tree->value > node_to_find){
+		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left << endl;
+		return find_node(tree->left,node_to_find);
+	}
+	else{
+		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->right << endl;
+		return find_node(tree->right,node_to_find);
+	}
 }
 
 void frequency_output(BinTreeNode* tree){
