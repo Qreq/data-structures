@@ -1,6 +1,6 @@
 #include "binary_tree.cpp"
 #include <fstream>
-#include <boost/algoirthm/string.hpp>
+#include <boost/algorithm/string.hpp>
 /*
  * 
  * CREDITS:  splits_strings function attributed to Jonathan Boccara
@@ -23,15 +23,15 @@ void binary_tree_using_vector(){
 	}
 	cout << endl;
 	//cout << "Root Node is" << binarytree->value << endl;
-	return 0;
 }
 vector<string> read_from_file(){
 	string filename = "filetoread.txt";
-	vector<string> lines
+	string line;
+	vector<string> lines;
 	ifstream file (filename);
 	if (file.is_open()){
-		while (getline(myfile,line)){
-			line.emplace_back(line);
+		while (getline(file,line)){
+			lines.emplace_back(line);
 		}
 	}
 	else{
@@ -44,14 +44,14 @@ vector<string> split_strings(vector<string> lines){
 	for (int i= 0; i < lines.size(); i++){
 		string text = lines[i];
 		boost::split(result,text, [](char c){
-			return c == '';
-		})
+			return c == ' ';
+		});
 	}
 	return result;
 }
 void binary_tree_using_textfile(){
 	vector<string> lines,binarytree;
-	lines = read_from_file;
+	lines = read_from_file();
 	
 }
 int main(){
@@ -62,4 +62,5 @@ int main(){
 	cout << "USING TEXT FILE" << endl;
 	cout << "..............." << endl;
 	binary_tree_using_textfile();
+	return 0;
 }
