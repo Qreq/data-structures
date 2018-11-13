@@ -10,6 +10,7 @@
  *REFERENCE: insert_node function: https://cumoodle.coventry.ac.uk/pluginfile.php/2300410/mod_resource/content/0/Binary%20Search%20Tree%20in%20C%2B%2B.cpp
  *REFERENCE: pre_order function: Week 5 Lecture - Trees, Slide 20
  *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 14
+ *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 33
  */
 
 using namespace std;
@@ -107,4 +108,15 @@ vector<string> split_strings(vector<string> lines){
 		}
 	}
 	return result;
+}
+
+int count_children(BinTreeNode* node){
+	int count = 0;
+	if (node->left != NULL){
+		count++;
+	}
+	if (node->right != NULL){
+		count++;
+	}
+	return count;
 }
