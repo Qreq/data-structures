@@ -124,9 +124,25 @@ int count_children(BinTreeNode* node){
 
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
+	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
 	if (node_to_remove == NULL){
 		return;
 	}
 	int num_children = count_children(node_to_remove);
+	switch (num_children){
+		case 0:
+			//removes node from tree, and updates parent's node connection
+			if (parent_of_remove->left !=  NULL){
+				parent_of_remove->left == NULL
+			}
+			else if (parent_of_remove-> right != NULL){
+				parent_of_remove->right == NULL;
+			}
+			node_to_remove->value = NULL;
+			
+		case 1:
+			
+		case 2:
+	}
 }
 
