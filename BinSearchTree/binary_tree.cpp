@@ -49,10 +49,11 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 
 BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 	if (tree->value == node_to_find){
-		return tree->value;
+		return tree;
 	}
 	else if (tree == NULL){
 		cout << "Node Not Found!" << endl;
+		return NULL;
 	}
 	else if (tree->value > node_to_find){
 		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left << endl;
@@ -119,5 +120,13 @@ int count_children(BinTreeNode* node){
 		count++;
 	}
 	return count;
+}
+
+void remove_node(BinTreeNode* tree, string node_to_find){
+	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
+	if (node_to_remove == NULL){
+		return;
+	}
+	int num_children = count_children(node_to_remove);
 }
 
