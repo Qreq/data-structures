@@ -47,9 +47,9 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 	return tree;
 }
 
-bool find_node(BinTreeNode* tree, string node_to_find){
+BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 	if (tree->value == node_to_find){
-		return true;
+		return tree->value;
 	}
 	else if (tree == NULL){
 		cout << "Node Not Found!" << endl;
@@ -120,3 +120,4 @@ int count_children(BinTreeNode* node){
 	}
 	return count;
 }
+
