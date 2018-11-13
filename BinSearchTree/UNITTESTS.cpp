@@ -2,12 +2,12 @@
 #include "binary_tree.cpp"
 
 int i;
-std::vector<std::string> correct_preorder = {};
-std::vector<std::string> wordset1 = {"This", "is", "the","first","stage"};
+vector<string> correct_preorder = {};
+vector<std::string> wordset1 = {"This", "is", "the","first","stage"};
 BinTreeNode* binarytree1 = insert_node(NULL,wordset1[0]);
-std::vector<std::string> wordset2 = {"I","really","do","enjoy","Computer", "Science","at","Coventry","University"};
+vector<string> wordset2 = {"I","really","do","enjoy","Computer", "Science","at","Coventry","University"};
 BinTreeNode* binarytree2 = insert_node(NULL,wordset2[0]);
-std::vector<std::string> wordset3 = {"Unit","Tests","are","extremely", "important","when","writing","code"};
+vector<string> wordset3 = {"Unit","Tests","are","extremely", "important","when","writing","code"};
 BinTreeNode* binarytree3 = insert_node(NULL,wordset3[0]);
 
 
