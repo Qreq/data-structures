@@ -7,7 +7,9 @@ class BinTreeNode{
 	std::string value;
 	BinTreeNode* left;
 	BinTreeNode* right;
+	BinTreeNode* parent;
 	int frequency_of_node;
 	BinTreeNode(std::string);
+	BinTreeNode(std::string, BinTreeNode*)
 };
 #endif
