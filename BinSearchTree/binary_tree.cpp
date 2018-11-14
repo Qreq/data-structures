@@ -148,6 +148,7 @@ void swap_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_rem
 		parent_of_remove->right = node_to_remove;
 	}
 }
+
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
@@ -159,7 +160,7 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 		case 0:
 			remove_childless_node(parent_of_remove,node_to_remove);
 		case 1:
-			swap_one_child_node()
+			swap_one_child_node(parent_of_remove,node_to_remove);
 		case 2:
 	}
 }
