@@ -15,9 +15,9 @@
 
 using namespace std;
 
-BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
+BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* parent){
 	if (tree == NULL){
-		tree = new BinTreeNode(node_to_insert);
+		tree = new BinTreeNode(node_to_insert,parent);
 	}
 	else{
 		/*
@@ -27,20 +27,20 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert){
 		*/
 		if (tree->value > node_to_insert){
 			if (tree->left == NULL){
-				tree->left = new BinTreeNode(node_to_insert);
+				tree->left = new BinTreeNode(node_to_insert,parent);
 			}
 			else{
 				//tree->frequency_of_node += count;
-				insert_node(tree->left,node_to_insert);
+				insert_node(tree->left,node_to_insert,parent);
 			}
 		}
 		else{
 			if (tree->right == NULL){
-				tree->right = new BinTreeNode(node_to_insert);
+				tree->right = new BinTreeNode(node_to_insert,parent);
 			}
 			else{
 				//tree->frequency_of_node += count;
-				insert_node(tree->right,node_to_insert);
+				insert_node(tree->right,node_to_insert,parent);
 			}
 		}
 	}
@@ -122,6 +122,32 @@ int count_children(BinTreeNode* node){
 	return count;
 }
 
+void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
+	//removes node from tree, and updates parent's node connection
+	if (parent_of_remove->left !=  NULL){
+		parent_of_remove->left == NULL
+	}
+	else if (parent_of_remove-> right != NULL){
+		parent_of_remove->right == NULL;
+	}
+	node_to_remove->value = NULL;	
+}
+void swap_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
+	//removes node from tree, swapping the place of child to it's parent
+	BinTreeNode* temp_swap = node_to_remove;
+	if (node_to_remove->left != NULL){
+		node_to_remove = node_to_remove->left;
+	}
+	else if (node_to_remove->right != NULL){
+		node_to_remove = node_to_remove->right;
+	}
+	if (parent_of_remove->left == temp_swap){
+		parent_of_remove->left = node_to_remove;
+	}
+	else if (parent_of_remove->right == temp_swap){
+		parent_of_remove->right = node_to_remove;
+	}
+}
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
@@ -131,17 +157,9 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 	int num_children = count_children(node_to_remove);
 	switch (num_children){
 		case 0:
-			//removes node from tree, and updates parent's node connection
-			if (parent_of_remove->left !=  NULL){
-				parent_of_remove->left == NULL
-			}
-			else if (parent_of_remove-> right != NULL){
-				parent_of_remove->right == NULL;
-			}
-			node_to_remove->value = NULL;
-			
+			remove_childless_node(parent_of_remove,node_to_remove);
 		case 1:
-			
+			swap_one_child_node()
 		case 2:
 	}
 }
