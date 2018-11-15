@@ -49,8 +49,8 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 	if (tree->value == node_to_find){
 		return tree;
 	}
-	else if (tree == nullptr){
-		cout << "Node Not Found!" << endl;
+	else if (tree->right == nullptr && tree->left == nullptr){
+		cout <<"Reached NULL" << endl;
 		return nullptr;
 	}
 	else if (tree->value > node_to_find){
@@ -58,8 +58,9 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 		return find_node(tree->left,node_to_find);
 	}
 	else{
+		cout << tree->right->value << endl;
 		cout << "Traversing Right on Tree from " << tree->value << " to " << tree->right->value << endl;
-		return find_node(tree->right,node_to_find);
+		return find_node(tree->right,node_to_find);	
 	}
 }
 
@@ -69,7 +70,6 @@ void frequency_output(BinTreeNode* tree){
 	if (tree->right != nullptr) frequency_output(tree->right);
 }
 vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
-	//cout << tree->value << " ";
 	preorder_list.emplace_back(tree->value);
 	if (tree->left != nullptr){
 		preorder_list = pre_order(tree->left, preorder_list);
