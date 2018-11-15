@@ -149,6 +149,7 @@ void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	}
 }
 string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
+	//finds max value on lfet subtree of node to remove, swaps it with the removal node, and deletes the duplicate value
 	if (node_to_remove->value > max_value){
 		max_value = node_to_remove->value;
 	}
@@ -166,6 +167,8 @@ void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	BinTreeNode* duplicate_node = find_node(tree,max_value);
 	node_to_remove->value = max_value;
 	duplicate_node->value = NULL;
+	duplicate_node->left = NULL;
+	duplicate_node->right = NULL;
 }
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
@@ -180,6 +183,7 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 		case 1:
 			swap_one_child_node(parent_of_remove,node_to_remove);
 		case 2:
+			remove_two_child_node(parent_of_remove,node_to_remove,tree);
 	}
 }
 
