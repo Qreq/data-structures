@@ -58,7 +58,7 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 		return find_node(tree->left,node_to_find);
 	}
 	else{
-		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->right->value << endl;
+		cout << "Traversing Right on Tree from " << tree->value << " to " << tree->right->value << endl;
 		return find_node(tree->right,node_to_find);
 	}
 }
