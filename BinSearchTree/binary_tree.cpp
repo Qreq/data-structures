@@ -132,7 +132,7 @@ void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	}
 	node_to_remove->value = NULL;	
 }
-void swap_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
+void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, swapping the place of child to it's parent
 	BinTreeNode* temp_swap = node_to_remove;
 	if (node_to_remove->left != NULL){
@@ -148,7 +148,25 @@ void swap_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_rem
 		parent_of_remove->right = node_to_remove;
 	}
 }
-
+string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
+	if (node_to_remove->value > max_value){
+		max_value = node_to_remove->value;
+	}
+	if (node_to_remove->right != NULL){
+		return find_max_from_left(node_to_remove->right,max_value);
+	}
+	else if (node_to_remove->left != NULL){
+		return find_max_from_left(node_to_remove->left,max_value);
+	}
+	return max_value;	
+}
+void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove, BinTreeNode* tree){
+	BinTreeNode* start_on_left = node_to_remove->left;
+	string max_value = find_max_from_left(start_on_left->value,node_to_remove->value);
+	BinTreeNode* duplicate_node = find_node(tree,max_value);
+	node_to_remove->value = max_value;
+	duplicate_node->value = NULL;
+}
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
