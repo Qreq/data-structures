@@ -169,18 +169,17 @@ void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 }
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
-	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
 	if (node_to_remove == nullptr){
 		return;
 	}
 	int num_children = count_children(node_to_remove);
 	switch (num_children){
 		case 0:
-			remove_childless_node(parent_of_remove,node_to_remove);
+			remove_childless_node(node_to_remove->parent,node_to_remove);
 		case 1:
-			remove_one_child_node(parent_of_remove,node_to_remove);
+			remove_one_child_node(node_to_remove->parent,node_to_remove);
 		case 2:
-			remove_two_child_node(parent_of_remove,node_to_remove,tree);
+			remove_two_child_node(node_to_remove->parent,node_to_remove,tree);
 	}
 }
 
