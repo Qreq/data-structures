@@ -34,11 +34,11 @@ void binary_tree_using_textfile(){
 		cout << "Commencing Search for: " << node << endl;
 		cout << "-------------------------------------" << endl;
 		BinTreeNode* result_of_find_node = find_node(binarytree,node);
-		if (result_of_find_node->value == node) {
-			cout << "Node Found" << endl;
-		}
-		else{
+		if (result_of_find_node ==  nullptr) {
 			cout << "Node Not Found" << endl;
+		}
+		else if (result_of_find_node->value == node){
+			cout << "Node Found" << endl;
 		}
 	}
 }
