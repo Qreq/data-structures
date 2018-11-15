@@ -28,7 +28,7 @@ void binary_tree_using_textfile(){
 	}
 	cout << endl;
 	//searches for values
-	vector<string> searches = {"Japanese","This","create","doll","cheese"};
+	vector<string> searches = {"Japanese","this","create","doll","cheese"};
 	for (int i = 0; i < searches.size();i++){
 		string node = searches[i];
 		cout << "Commencing Search for: " << node << endl;
