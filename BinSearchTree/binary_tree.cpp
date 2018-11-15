@@ -50,7 +50,6 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 		return tree;
 	}
 	else if (tree->right == nullptr && tree->left == nullptr){
-		cout <<"Reached NULL" << endl;
 		return nullptr;
 	}
 	else if (tree->value > node_to_find){
