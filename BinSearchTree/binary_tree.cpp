@@ -20,7 +20,7 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 		tree = new BinTreeNode(node_to_insert,parent);
 	}
 	else if (tree->value ==  node_to_insert){
-		tree->frequency += 1;
+		tree->frequency_of_node += 1;
 	}
 	else{
 		if (tree->value > node_to_insert){
