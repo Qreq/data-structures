@@ -43,15 +43,9 @@ void binary_tree_using_textfile(){
 	}
 	cout << endl << "Commencing Deletion of Nodes" << endl;
 	cout << "------------------------------------------" << endl;
-	binarytree = remove_node(binarytree,"I");
-	BinTreeNode* result_of_find_node = find_node(binarytree,"I");
-	if (result_of_find_node ==  nullptr) {
-		cout << "Node Not Found" << endl;
-	}
-	else if (result_of_find_node->value == "I"){
-		cout << "Node Found" << endl;
-	}
-	
+	binarytree = remove_node(binarytree,"I"); //childless
+	binarytree = remove_node(binarytree,"until");//one child
+	binarytree = remove_node(binarytree,"is");//two children
 }
 int main(){
 	cout << "USING TEXT FILE" << endl;
