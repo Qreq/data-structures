@@ -7,10 +7,10 @@
 
 /*
  * 
- *REFERENCE: insert_node function: https://cumoodle.coventry.ac.uk/pluginfile.php/2300410/mod_resource/content/0/Binary%20Search%20Tree%20in%20C%2B%2B.cpp
- *REFERENCE: pre_order function: Week 5 Lecture - Trees, Slide 20
- *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 14
- *REFERENCE: remove_node function: Week 5 Lecture - Trees - Slide 33
+ *REFERENCE: insert_node pseudocode: Week5 Lecture - Trees, SLide 12
+ *REFERENCE: pre_order pseudocode: Week 5 Lecture - Trees, Slide 20
+ *REFERENCE: find_node pseudocode: Week 5 Lecture - Trees - Slide 14
+ *REFERENCE: remove_node pseudocode: Week 5 Lecture - Trees - Slide 33
  */
 
 using namespace std;
