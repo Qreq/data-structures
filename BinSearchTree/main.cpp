@@ -33,8 +33,8 @@ void binary_tree_using_textfile(){
 		string node = searches[i];
 		cout << "Commencing Search for: " << node << endl;
 		cout << "-------------------------------------" << endl;
-		bool found = find_node(binarytree,node);
-		if (found) {
+		BinTreeNode* result_of_find_node = find_node(binarytree,node);
+		if (result_of_find_node->value == node) {
 			cout << "Node Found" << endl;
 		}
 		else{
