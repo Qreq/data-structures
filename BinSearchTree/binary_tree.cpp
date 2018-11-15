@@ -10,7 +10,7 @@
  *REFERENCE: insert_node function: https://cumoodle.coventry.ac.uk/pluginfile.php/2300410/mod_resource/content/0/Binary%20Search%20Tree%20in%20C%2B%2B.cpp
  *REFERENCE: pre_order function: Week 5 Lecture - Trees, Slide 20
  *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 14
- *REFERENCE: find_node function: Week 5 Lecture - Trees - Slide 33
+ *REFERENCE: remove_node function: Week 5 Lecture - Trees - Slide 33
  */
 
 using namespace std;
@@ -120,13 +120,16 @@ int count_children(BinTreeNode* node){
 
 void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, and updates parent's node connection
-	if (parent_of_remove->left !=  nullptr){
+	cout << parent_of_remove->left << endl;
+	if (parent_of_remove->left ==  node_to_remove){
+		cout << "Changing Left to Null" << endl;
 		parent_of_remove->left == nullptr;
 	}
-	else if (parent_of_remove-> right != nullptr){
+	else if (parent_of_remove-> right == node_to_remove){
+		cout << "Changing Right to NUll" << endl;
 		parent_of_remove->right == nullptr;
 	}
-	node_to_remove->value = nullptr;	
+	node_to_remove = nullptr;	
 }
 void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, swapping the place of child to it's parent
