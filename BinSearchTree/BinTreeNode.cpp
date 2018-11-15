@@ -3,8 +3,8 @@
 
 BinTreeNode::BinTreeNode(std::string word,BinTreeNode* parent){
 	this->value = word;
-	this->left = NULL;
-	this->right = NULL;
+	this->left = nullptr;
+	this->right = nullptr;
 	this->frequency_of_node = 1;
 	this->parent = parent;
 }

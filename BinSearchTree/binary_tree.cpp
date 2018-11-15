@@ -16,7 +16,7 @@
 using namespace std;
 
 BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* parent){
-	if (tree == NULL){
+	if (tree == nullptr){
 		tree = new BinTreeNode(node_to_insert,parent);
 	}
 	else{
@@ -26,7 +26,7 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 		}
 		*/
 		if (tree->value > node_to_insert){
-			if (tree->left == NULL){
+			if (tree->left == nullptr){
 				tree->left = new BinTreeNode(node_to_insert,parent);
 			}
 			else{
@@ -35,7 +35,7 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 			}
 		}
 		else{
-			if (tree->right == NULL){
+			if (tree->right == nullptr){
 				tree->right = new BinTreeNode(node_to_insert,parent);
 			}
 			else{
@@ -51,9 +51,9 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 	if (tree->value == node_to_find){
 		return tree;
 	}
-	else if (tree == NULL){
+	else if (tree == nullptr){
 		cout << "Node Not Found!" << endl;
-		return NULL;
+		return nullptr;
 	}
 	else if (tree->value > node_to_find){
 		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left << endl;
@@ -67,16 +67,16 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 
 void frequency_output(BinTreeNode* tree){
 	cout << "Frequency of Value " << tree->value << ": " << tree->frequency_of_node << endl;
-	if (tree->left != NULL) frequency_output(tree->left);
-	if (tree->right != NULL) frequency_output(tree->right);
+	if (tree->left != nullptr) frequency_output(tree->left);
+	if (tree->right != nullptr) frequency_output(tree->right);
 }
 vector<string> pre_order(BinTreeNode* tree, vector<string> preorder_list){
 	//cout << tree->value << " ";
 	preorder_list.emplace_back(tree->value);
-	if (tree->left != NULL){
+	if (tree->left != nullptr){
 		preorder_list = pre_order(tree->left, preorder_list);
 	} 
-	if (tree->right != NULL){
+	if (tree->right != nullptr){
 		preorder_list = pre_order(tree->right, preorder_list);
 	}
 	return preorder_list;
@@ -113,10 +113,10 @@ vector<string> split_strings(vector<string> lines){
 
 int count_children(BinTreeNode* node){
 	int count = 0;
-	if (node->left != NULL){
+	if (node->left != nullptr){
 		count++;
 	}
-	if (node->right != NULL){
+	if (node->right != nullptr){
 		count++;
 	}
 	return count;
@@ -124,21 +124,21 @@ int count_children(BinTreeNode* node){
 
 void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, and updates parent's node connection
-	if (parent_of_remove->left !=  NULL){
-		parent_of_remove->left == NULL
+	if (parent_of_remove->left !=  nullptr){
+		parent_of_remove->left == nullptr
 	}
-	else if (parent_of_remove-> right != NULL){
-		parent_of_remove->right == NULL;
+	else if (parent_of_remove-> right != nullptr){
+		parent_of_remove->right == nullptr;
 	}
-	node_to_remove->value = NULL;	
+	node_to_remove->value = nullptr;	
 }
 void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, swapping the place of child to it's parent
 	BinTreeNode* temp_swap = node_to_remove;
-	if (node_to_remove->left != NULL){
+	if (node_to_remove->left != nullptr){
 		node_to_remove = node_to_remove->left;
 	}
-	else if (node_to_remove->right != NULL){
+	else if (node_to_remove->right != nullptr){
 		node_to_remove = node_to_remove->right;
 	}
 	if (parent_of_remove->left == temp_swap){
@@ -153,10 +153,10 @@ string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
 	if (node_to_remove->value > max_value){
 		max_value = node_to_remove->value;
 	}
-	if (node_to_remove->right != NULL){
+	if (node_to_remove->right != nullptr){
 		return find_max_from_left(node_to_remove->right,max_value);
 	}
-	else if (node_to_remove->left != NULL){
+	else if (node_to_remove->left != nullptr){
 		return find_max_from_left(node_to_remove->left,max_value);
 	}
 	return max_value;	
@@ -166,14 +166,14 @@ void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	string max_value = find_max_from_left(start_on_left->value,node_to_remove->value);
 	BinTreeNode* duplicate_node = find_node(tree,max_value);
 	node_to_remove->value = max_value;
-	duplicate_node->value = NULL;
-	duplicate_node->left = NULL;
-	duplicate_node->right = NULL;
+	duplicate_node->value = nullptr;
+	duplicate_node->left = nullptr;
+	duplicate_node->right = nullptr;
 }
 void remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	BinTreeNode* parent_of_remove = find_node(tree,node_to_remove->parent);
-	if (node_to_remove == NULL){
+	if (node_to_remove == nullptr){
 		return;
 	}
 	int num_children = count_children(node_to_remove);

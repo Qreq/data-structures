@@ -13,7 +13,7 @@ void binary_tree_using_textfile(){
 	vector<string> lines,convert_to_tree;
 	lines = read_from_file("filetoread.txt");
 	convert_to_tree = split_strings(lines);
-	BinTreeNode* binarytree = insert_node(0,convert_to_tree[0],NULL);
+	BinTreeNode* binarytree = insert_node(0,convert_to_tree[0],nullptr);
 	for (int i = 1; i < convert_to_tree.size();i++){
 		string word = convert_to_tree[i];
 		insert_node(binarytree,word,binarytree->parent);
