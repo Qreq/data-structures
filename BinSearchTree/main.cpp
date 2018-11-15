@@ -31,7 +31,7 @@ void binary_tree_using_textfile(){
 	vector<string> searches = {"Japanese","this","create","doll","cheese"};
 	for (int i = 0; i < searches.size();i++){
 		string node = searches[i];
-		cout << "Commencing Search for: " << node << endl;
+		cout << endl << "Commencing Search for: " << node << endl;
 		cout << "-------------------------------------" << endl;
 		BinTreeNode* result_of_find_node = find_node(binarytree,node);
 		if (result_of_find_node ==  nullptr) {
@@ -41,6 +41,9 @@ void binary_tree_using_textfile(){
 			cout << "Node Found" << endl;
 		}
 	}
+	cout << endl << "Commencing Deletion of Nodes" << endl;
+	cout << "------------------------------------------" << endl;
+	remove_node(binarytree,"I");
 }
 int main(){
 	cout << "USING TEXT FILE" << endl;
