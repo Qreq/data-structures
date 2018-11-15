@@ -25,20 +25,18 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 	else{
 		if (tree->value > node_to_insert){
 			if (tree->left == nullptr){
-				tree->left = new BinTreeNode(node_to_insert,parent);
+				tree->left = new BinTreeNode(node_to_insert,nullptr);
 			}
 			else{
-				//tree->frequency_of_node += count;
-				insert_node(tree->left,node_to_insert,parent);
+				insert_node(tree->left,node_to_insert,tree);
 			}
 		}
 		else{
 			if (tree->right == nullptr){
-				tree->right = new BinTreeNode(node_to_insert,parent);
+				tree->right = new BinTreeNode(node_to_insert,nullptr);
 			}
 			else{
-				//tree->frequency_of_node += count;
-				insert_node(tree->right,node_to_insert,parent);
+				insert_node(tree->right,node_to_insert,tree);
 			}
 		}
 	}
