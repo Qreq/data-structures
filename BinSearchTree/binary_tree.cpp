@@ -19,12 +19,10 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 	if (tree == nullptr){
 		tree = new BinTreeNode(node_to_insert,parent);
 	}
+	else if (tree->value ==  node_to_insert){
+		tree->frequency += 1;
+	}
 	else{
-		/*
-		if (tree->value == node_to_insert){
-			count++;
-		}
-		*/
 		if (tree->value > node_to_insert){
 			if (tree->left == nullptr){
 				tree->left = new BinTreeNode(node_to_insert,parent);
