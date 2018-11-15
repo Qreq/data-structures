@@ -54,11 +54,11 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 		return nullptr;
 	}
 	else if (tree->value > node_to_find){
-		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left << endl;
+		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left->value << endl;
 		return find_node(tree->left,node_to_find);
 	}
 	else{
-		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->right << endl;
+		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->right->value << endl;
 		return find_node(tree->right,node_to_find);
 	}
 }
