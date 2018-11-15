@@ -16,7 +16,7 @@ void binary_tree_using_textfile(){
 	BinTreeNode* binarytree = insert_node(0,convert_to_tree[0],nullptr);
 	for (int i = 1; i < convert_to_tree.size();i++){
 		string word = convert_to_tree[i];
-		insert_node(binarytree,word,binarytree->parent);
+		insert_node(binarytree,word,binarytree);
 	}
 	//print pre order of binary tree
 	cout << "Printing Preorder ..." << endl;
