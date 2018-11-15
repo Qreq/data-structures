@@ -160,8 +160,7 @@ string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
 	return max_value;	
 }
 void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove, BinTreeNode* tree){
-	BinTreeNode* start_on_left = node_to_remove->left;
-	string max_value = find_max_from_left(start_on_left->value,node_to_remove->value);
+	string max_value = find_max_from_left(node_to_remove->left,node_to_remove->value);
 	BinTreeNode* duplicate_node = find_node(tree,max_value);
 	node_to_remove->value = max_value;
 	duplicate_node->value = nullptr;
