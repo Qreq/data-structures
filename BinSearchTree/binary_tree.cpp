@@ -118,16 +118,13 @@ int count_children(BinTreeNode* node){
 
 void remove_childless_node(BinTreeNode* node_to_remove){
 	//removes node from tree, and updates parent's node connection
-	//cout << parent_of_remove->right << endl;
 	if (node_to_remove->parent->left ==  node_to_remove){
-		cout << "Changing Left to Null" << endl;
-		node_to_remove->parent->left == nullptr;
+		node_to_remove->parent->left = nullptr;
 	}
 	else if (node_to_remove->parent->right == node_to_remove){
-		cout << "Changing Right to NUll" << endl;
-		node_to_remove->parent->right == nullptr;
+		node_to_remove->parent->right = nullptr;
 	}
-	node_to_remove = nullptr;	
+	node_to_remove = nullptr;
 }
 void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, swapping the place of child to it's parent
@@ -166,10 +163,10 @@ void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	duplicate_node->left = nullptr;
 	duplicate_node->right = nullptr;
 }
-void remove_node(BinTreeNode* tree, string node_to_find){
+BinTreeNode* remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	if (node_to_remove == nullptr){
-		return;
+		return node_to_remove;
 	}
 	int num_children = count_children(node_to_remove);
 	switch (num_children){
@@ -183,5 +180,7 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 			remove_two_child_node(node_to_remove->parent,node_to_remove,tree);
 			break;
 	}
+	return tree;
+		
 }
 
