@@ -125,7 +125,7 @@ int count_children(BinTreeNode* node){
 void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, and updates parent's node connection
 	if (parent_of_remove->left !=  nullptr){
-		parent_of_remove->left == nullptr
+		parent_of_remove->left == nullptr;
 	}
 	else if (parent_of_remove-> right != nullptr){
 		parent_of_remove->right == nullptr;
@@ -181,7 +181,7 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 		case 0:
 			remove_childless_node(parent_of_remove,node_to_remove);
 		case 1:
-			swap_one_child_node(parent_of_remove,node_to_remove);
+			remove_one_child_node(parent_of_remove,node_to_remove);
 		case 2:
 			remove_two_child_node(parent_of_remove,node_to_remove,tree);
 	}
