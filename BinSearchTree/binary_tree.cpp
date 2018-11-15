@@ -25,7 +25,7 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 	else{
 		if (tree->value > node_to_insert){
 			if (tree->left == nullptr){
-				tree->left = new BinTreeNode(node_to_insert,nullptr);
+				tree->left = new BinTreeNode(node_to_insert,tree);
 			}
 			else{
 				insert_node(tree->left,node_to_insert,tree);
@@ -33,7 +33,7 @@ BinTreeNode* insert_node(BinTreeNode* tree,string node_to_insert,BinTreeNode* pa
 		}
 		else{
 			if (tree->right == nullptr){
-				tree->right = new BinTreeNode(node_to_insert,nullptr);
+				tree->right = new BinTreeNode(node_to_insert,tree);
 			}
 			else{
 				insert_node(tree->right,node_to_insert,tree);
@@ -116,16 +116,16 @@ int count_children(BinTreeNode* node){
 	return count;
 }
 
-void remove_childless_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
+void remove_childless_node(BinTreeNode* node_to_remove){
 	//removes node from tree, and updates parent's node connection
-	cout << parent_of_remove->left << endl;
-	if (parent_of_remove->left ==  node_to_remove){
+	//cout << parent_of_remove->right << endl;
+	if (node_to_remove->parent->left ==  node_to_remove){
 		cout << "Changing Left to Null" << endl;
-		parent_of_remove->left == nullptr;
+		node_to_remove->parent->left == nullptr;
 	}
-	else if (parent_of_remove-> right == node_to_remove){
+	else if (node_to_remove->parent->right == node_to_remove){
 		cout << "Changing Right to NUll" << endl;
-		parent_of_remove->right == nullptr;
+		node_to_remove->parent->right == nullptr;
 	}
 	node_to_remove = nullptr;	
 }
@@ -174,7 +174,7 @@ void remove_node(BinTreeNode* tree, string node_to_find){
 	int num_children = count_children(node_to_remove);
 	switch (num_children){
 		case 0:
-			remove_childless_node(node_to_remove->parent,node_to_remove);
+			remove_childless_node(node_to_remove);
 			break;
 		case 1:
 			remove_one_child_node(node_to_remove->parent,node_to_remove);
