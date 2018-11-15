@@ -9,6 +9,6 @@ class BinTreeNode{
 	BinTreeNode* right;
 	BinTreeNode* parent;
 	int frequency_of_node;
-	BinTreeNode(std::string, BinTreeNode*)
+	BinTreeNode(std::string, BinTreeNode*);
 };
 #endif
