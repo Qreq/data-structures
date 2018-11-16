@@ -15,5 +15,6 @@ int main(){
 	int first_node = nodes[0];
 	Graph* my_graph = new Graph(first_node);
 	my_graph = populate_graph(my_graph,nodes);
+
 	return 0;
 }
