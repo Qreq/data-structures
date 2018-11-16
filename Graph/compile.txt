@@ -1,0 +1,2 @@
+To run main code:
+	g++ --std=c++14 main.cpp Graph.cpp Graph.hpp -o main && ./main
