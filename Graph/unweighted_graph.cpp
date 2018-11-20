@@ -15,3 +15,16 @@ void add_edge(Graph* graph_to_add, array<int,2> new_edge){
 	array<int,2> reverse_edge = {new_edge[1],new_edge[0]};
 	graph_to_add->edges.insert(reverse_edge);
 }
+
+void populate_adjacency_matrix(Graph* graph_with_matrix){
+	set<array<int,2>>::iterator edge_iter;
+	set<int>::iterator vert_iter;
+	for (vert_iter = graph_with_matrix->vertices.begin(); vert_iter != graph_with_matrix->vertices.end(); vert_iter++){
+		for (edge_iter = graph_with_matrix->edges.begin(); edge_iter != graph_with_matrix->edges.end(); edge_iter++){
+			/*if vertice is found to be connected with any other vertice
+			if (graph_with_matrix->vertices[j] == graph_with_matrix->edges[i][0]){
+				
+			}*/
+		}
+	}
+}
