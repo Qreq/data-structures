@@ -10,9 +10,7 @@ void add_vertice(int new_vertice, Graph* graph_to_add){
 
 void add_edge(Graph* graph_to_add, array<int,2> new_edge){
 	//adds inserted edge to graph on two nodes
-	cout << "before first emplace" << endl;
 	graph_to_add->edges.emplace(new_edge);
-	cout << "after furst emplace" << endl;
 	//connects the vertices to each other, instead of just directionally
 	array<int,2> reverse_edge = {new_edge[1],new_edge[0]};
 	graph_to_add->edges.emplace(reverse_edge);
