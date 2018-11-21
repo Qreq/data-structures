@@ -13,7 +13,7 @@ class Graph{
 	public:
 	std::set<int> vertices;
 	std::set<std::array<int,2>> edges;
-	std::vector<std::vector<bool>> adj_matrix;
+	std::vector<std::vector<bool>>* adj_matrix;
 	Graph(int);
 };
 #endif
