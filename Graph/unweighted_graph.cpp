@@ -20,7 +20,8 @@ Graph* populate_adjacency_matrix(Graph* graph_with_matrix){
 	set<array<int,2>>::iterator edge_iter;
 	set<int>::iterator vert_iter;
 	//for use with positions in adjacency matrix vector of graph
-	int x,y = 0;
+	int x = 0;
+	int	y = 0;
 	
 	/* checks if a vertice is connected with another vertice
 	 * increments x and y for each pass through the edges.
@@ -28,19 +29,25 @@ Graph* populate_adjacency_matrix(Graph* graph_with_matrix){
 	 * if not, set it to false.
 	 */
 	for (vert_iter = graph_with_matrix->vertices.begin(); vert_iter != graph_with_matrix->vertices.end(); vert_iter++){
-		x = 0;
-		y++;
+		cout << "x = " << x << endl;
+		y = 0;
+		vector<bool> vertices_connected = {};
 		for (edge_iter = graph_with_matrix->edges.begin(); edge_iter != graph_with_matrix->edges.end(); edge_iter++){
-			x++;
 			array<int,2> current_edge = *edge_iter;
-			if (*vert_iter == current_edge[0] || *vert_iter == current_edge[1]){
-				//TODO: add to adj matrix
-				graph_with_matrix->adj_matrix[x][y] = true;
+			if (*vert_iter == current_edge[0]){
+				cout << "Are Connected" << endl;
+				vertices_connected.emplace_back(true);
+				//graph_with_matrix->adj_matrix->at(x).push_back(true);
 			}
 			else{
-				graph_with_matrix->adj_matrix[x][y] = false;
+				cout << "not connected" << endl;
+				vertices_connected.emplace_back(false);
+				//graph_with_matrix->adj_matrix->at(x).push_back(false);
 			}
+			y++;
 		}
+		graph_with_matrix->adj_matrix->push_back(vertices_connected);
+		x++;
 	}
 	return graph_with_matrix;
 }
