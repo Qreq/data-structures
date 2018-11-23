@@ -19,5 +19,6 @@ class Graph{
 	void add_edge(std::array<int,2>);
 	void populate_matrix_false();
 	void matrix_connections();
+	bool is_path(int,int,std::vector<int>);
 };
 #endif
