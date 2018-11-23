@@ -54,3 +54,19 @@ void Graph::matrix_connections(){
 		x++;
 	}
 }
+bool Graph::is_path(int start, int end, std::vector<int> checked_vertices){
+	if (start == end){
+		return true;
+	}
+	ptrdiff_t connection_line = std::distance(this->vertices.begin(), std::find(this->vertices.begin(),this->vertices.end(),start));
+	std::cout << "CONNECTION_LINE = " << connection_line << std::endl;
+	ptrdiff_t connected_index = std::distance(this->adj_matrix->at(connection_line).begin(), std::find(this->adj_matrix->at(connection_line).begin(),this->adj_matrix->at(connection_line).end(),true));
+	std::cout << "CONNECTED = " << connected_index << std::endl;
+	
+	std::set<int>::iterator vert_iter = this->vertices.begin();
+	
+	std::advance(vert_iter,connected_index);
+	
+	
+	return is_path(*vert_iter,end,checked_vertices);
+}
