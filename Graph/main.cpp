@@ -38,5 +38,12 @@ int main(){
 		}
 		cout << endl;
 	}
+	
+	if (my_graph->is_path(1,6,{})){
+		cout << "Yes" << endl;
+	}
+	else{
+		cout << "No" << endl;
+	}
 	return 0;
 }
