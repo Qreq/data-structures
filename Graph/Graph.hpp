@@ -15,5 +15,9 @@ class Graph{
 	std::set<std::array<int,2>> edges;
 	std::vector<std::vector<bool>>* adj_matrix;
 	Graph(int);
+	void add_vertice(int);
+	void add_edge(std::array<int,2>);
+	void populate_matrix_false();
+	void matrix_connections();
 };
 #endif
