@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stack>
+#include <queue>
 #include "Graph.hpp"
  /*
   * 
@@ -101,12 +102,12 @@ bool Graph::is_path(int start, int end, std::set<int> checked_vertices){
 	return is_path(*vert_iter,end,checked_vertices);
 }
 std::vector<int> Graph::trav_dfs(int start_vert){
-	std::stack<int> mystack;
+	std::stack<int> vertices;
 	std::vector<int> visited;
-	mystack.push(start_vert);
-	while(!mystack.empty()){
-		int vert_to_check = mystack.top();
-		mystack.pop();
+	vertices.push(start_vert);
+	while(!vertices.empty()){
+		int vert_to_check = vertices.top();
+		vertices.pop();
 		bool has_visit = false;
 		for (int i = 0; i < visited.size(); i++){
 			if (vert_to_check == visited[i]){
@@ -118,7 +119,7 @@ std::vector<int> Graph::trav_dfs(int start_vert){
 			for (std::array<int,2> edge : this->edges){
 				if (edge[0] == vert_to_check){
 					int next_vert = edge[1];
-					mystack.push(next_vert);
+					vertices.push(next_vert);
 				}
 			}
 		}
