@@ -102,21 +102,22 @@ bool Graph::is_path(int start, int end, std::set<int> checked_vertices){
 	
 	return is_path(*vert_iter,end,checked_vertices);
 }
-std::vector<int> Graph::trav_dfs(int start_vert){
+std::set<int> Graph::trav_dfs(int start_vert){
 	std::stack<int> vertices;
-	std::vector<int> visited;
+	std::set<int> visited;
 	vertices.push(start_vert);
 	while(!vertices.empty()){
 		int vert_to_check = vertices.top();
 		vertices.pop();
 		bool has_visit = false;
-		for (int i = 0; i < visited.size(); i++){
-			if (vert_to_check == visited[i]){
+		std::set<int>::iterator vert_iter = visited.begin();
+		for (vert_iter; vert_iter !=  visited.end(); vert_iter++){
+			if (vert_to_check == *vert_iter){
 				has_visit = true;
 			}
 		}
 		if(!has_visit){
-			visited.emplace_back(vert_to_check);
+			visited.insert(vert_to_check);
 			for (std::array<int,2> edge : this->edges){
 				if (edge[0] == vert_to_check){
 					int next_vert = edge[1];
@@ -127,21 +128,22 @@ std::vector<int> Graph::trav_dfs(int start_vert){
 	}
 	return visited;
 }
-std::vector<int> Graph::trav_bfs(int start_vert){
+std::set<int> Graph::trav_bfs(int start_vert){
 	std::queue<int> vertices;
-	std::vector<int> visited;
+	std::set<int> visited;
 	vertices.push(start_vert);
 	while(!vertices.empty()){
 		int vert_to_check = vertices.front();
 		vertices.pop();
 		bool has_visit = false;
-		for (int i = 0; i < visited.size(); i++){
-			if (vert_to_check == visited[i]){
+		std::set<int>::iterator vert_iter = visited.begin();
+		for (vert_iter; vert_iter !=  visited.end(); vert_iter++){
+			if (vert_to_check == *vert_iter){
 				has_visit = true;
 			}
 		}
 		if (!has_visit){
-			visited.emplace_back(vert_to_check);
+			visited.insert(vert_to_check);
 			for (std::array<int,2> edge : this->edges){
 				if (edge[0] == vert_to_check){
 					int next_vert = edge[1];

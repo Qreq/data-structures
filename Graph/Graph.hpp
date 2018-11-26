@@ -20,7 +20,8 @@ class Graph{
 	void populate_matrix_false();
 	void matrix_connections();
 	bool is_path(int,int,std::set<int>);
-	std::vector<int> trav_dfs(int);
-	std::vector<int> trav_bfs(int);
+	bool is_connected();
+	std::set<int> trav_dfs(int);
+	std::set<int> trav_bfs(int);
 };
 #endif
