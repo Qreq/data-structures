@@ -7,8 +7,9 @@
   * 
   * REFERENCE: find position of an elemt in vector found here: https://stackoverflow.com/a/15099748
 	  * written by user: dasblinkenlight
-  * REFERENCE: DFS pseudocode written by Diana Hintea available here: https://cumoodle.coventry.ac.uk/pluginfile.php/2463345/mod_resource/content/0/Week%207%20Lecture%20-%20More%20Graphs.pdf
-	  * Week 7 Slide 5
+  * REFERENCE: DFS & BFS pseudocode written by Diana Hintea available here: https://cumoodle.coventry.ac.uk/pluginfile.php/2463345/mod_resource/content/0/Week%207%20Lecture%20-%20More%20Graphs.pdf
+	  * DFS - Week 7 Slide 5
+	  * BFS - Week 7 Slide 10
   */
 Graph::Graph(int vertice){
 	this->vertices.insert(vertice);
@@ -115,6 +116,31 @@ std::vector<int> Graph::trav_dfs(int start_vert){
 			}
 		}
 		if(!has_visit){
+			visited.emplace_back(vert_to_check);
+			for (std::array<int,2> edge : this->edges){
+				if (edge[0] == vert_to_check){
+					int next_vert = edge[1];
+					vertices.push(next_vert);
+				}
+			}
+		}
+	}
+	return visited;
+}
+std::vector<int> Graph::trav_bfs(int start_vert){
+	std::queue<int> vertices;
+	std::vector<int> visited;
+	vertices.push(start_vert);
+	while(!vertices.empty()){
+		int vert_to_check = vertices.front();
+		vertices.pop();
+		bool has_visit = false;
+		for (int i = 0; i < visited.size(); i++){
+			if (vert_to_check == visited[i]){
+				has_visit = true;
+			}
+		}
+		if (!has_visit){
 			visited.emplace_back(vert_to_check);
 			for (std::array<int,2> edge : this->edges){
 				if (edge[0] == vert_to_check){

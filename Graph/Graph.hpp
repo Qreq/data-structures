@@ -21,5 +21,6 @@ class Graph{
 	void matrix_connections();
 	bool is_path(int,int,std::set<int>);
 	std::vector<int> trav_dfs(int);
+	std::vector<int> trav_bfs(int);
 };
 #endif
