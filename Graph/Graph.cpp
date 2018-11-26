@@ -6,7 +6,8 @@
   * 
   * REFERENCE: find position of an elemt in vector found here: https://stackoverflow.com/a/15099748
 	  * written by user: dasblinkenlight
-  * 
+  * REFERENCE: DFS pseudocode written by Diana Hintea available here: https://cumoodle.coventry.ac.uk/pluginfile.php/2463345/mod_resource/content/0/Week%207%20Lecture%20-%20More%20Graphs.pdf
+	  * Week 7 Slide 5
   */
 Graph::Graph(int vertice){
 	this->vertices.insert(vertice);
@@ -112,7 +113,6 @@ std::vector<int> Graph::trav_dfs(int start_vert){
 				has_visit = true;
 			}
 		}
-		std::cout << "visited = " << has_visit << std::endl;
 		if(!has_visit){
 			visited.emplace_back(vert_to_check);
 			for (std::array<int,2> edge : this->edges){
