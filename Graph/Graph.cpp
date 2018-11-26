@@ -117,8 +117,8 @@ std::vector<int> Graph::trav_dfs(int start_vert){
 			visited.emplace_back(vert_to_check);
 			for (std::array<int,2> edge : this->edges){
 				if (edge[0] == vert_to_check){
-					auto next_vert = edge.end();
-					mystack.push(*next_vert);
+					int next_vert = edge[1];
+					mystack.push(next_vert);
 				}
 			}
 		}
