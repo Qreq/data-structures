@@ -14,29 +14,29 @@
 Graph::Graph(int vertice){
 	this->vertices.insert(vertice);
 	this->edges = {};
-	this->adj_matrix = new std::vector<std::vector<bool>>;
+	this->adj_matrix = new std::vector<std::vector<int>>;
 }
 void Graph::add_vertice(int new_vertice){
 	this->vertices.insert(new_vertice);
 }
-void Graph::add_edge(std::array<int,2> new_edge){
+void Graph::add_edge(std::array<int,3> new_edge){
 	//adds inserted edge to graph on two nodes
 	this->edges.emplace(new_edge);
 	//connects the vertices to each other, instead of just directionally
-	std::array<int,2> reverse_edge = {new_edge[1],new_edge[0]};
+	std::array<int,3> reverse_edge = {new_edge[1],new_edge[0],new_edge[2]};
 	this->edges.emplace(reverse_edge);
 }
 void Graph::populate_matrix_false(){
 	for (int i = 0; i < this->vertices.size(); i++){
-		std::vector<bool> connections;
+		std::vector<int> connections;
 		for (int j = 0; j < this->vertices.size(); j++){
-			connections.push_back(false);
+			connections.push_back(0);
 		}
 		this->adj_matrix->push_back(connections);
 	}
 }
 void Graph::matrix_connections(){
-	std::set<std::array<int,2>>::iterator edge_iter;
+	std::set<std::array<int,3>>::iterator edge_iter;
 	std::set<int>::iterator vert_iter;
 
 	//for use with positions in adjacency matrix vector of graph
@@ -48,10 +48,10 @@ void Graph::matrix_connections(){
 	 */
 	for (vert_iter = this->vertices.begin(); vert_iter != this->vertices.end(); vert_iter++){
 		for (edge_iter = this->edges.begin(); edge_iter != this->edges.end(); edge_iter++){
-			std::array<int,2> current_edge = *edge_iter;
+			std::array<int,3> current_edge = *edge_iter;
 			if (*vert_iter == current_edge[0]){
 				ptrdiff_t connected_to_pos = std::distance(this->vertices.begin(), std::find(this->vertices.begin(), this->vertices.end(), current_edge[1]));
-				this->adj_matrix->at(x).at(connected_to_pos) = true;
+				this->adj_matrix->at(x).at(connected_to_pos) = current_edge[2];
 			}
 			
 		}
@@ -118,7 +118,7 @@ std::set<int> Graph::trav_dfs(int start_vert){
 		}
 		if(!has_visit){
 			visited.insert(vert_to_check);
-			for (std::array<int,2> edge : this->edges){
+			for (std::array<int,3> edge : this->edges){
 				if (edge[0] == vert_to_check){
 					int next_vert = edge[1];
 					vertices.push(next_vert);
@@ -144,7 +144,7 @@ std::set<int> Graph::trav_bfs(int start_vert){
 		}
 		if (!has_visit){
 			visited.insert(vert_to_check);
-			for (std::array<int,2> edge : this->edges){
+			for (std::array<int,3> edge : this->edges){
 				if (edge[0] == vert_to_check){
 					int next_vert = edge[1];
 					vertices.push(next_vert);

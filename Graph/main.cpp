@@ -11,8 +11,8 @@ Graph* populate_graph(Graph* graph, vector<int> nodes){
 	}
 	return graph;
 }
-Graph* populate_edges(Graph* graph, set<array<int,2>> edges){
-	set<array<int,2>>::iterator edge_iter;
+Graph* populate_edges(Graph* graph, set<array<int,3>> edges){
+	set<array<int,3>>::iterator edge_iter;
 	for (edge_iter = edges.begin(); edge_iter != edges.end(); edge_iter++){
 		graph->add_edge(*edge_iter);
 	}
@@ -34,7 +34,7 @@ void save_dfs_file(set<int> path){
 }
 int main(){
 	vector<int> nodes = {3,5,7,4,6,7,12,1,2,4,6,7};
-	set<array<int,2>> edges = {{4,6},{1,4},{3,7},{12,5},{2,6},{2,7},{3,12},{3,5}};
+	set<array<int,3>> edges = {{4,6,3},{1,4,3},{3,7,6},{12,5,2},{2,6,4},{2,7,8},{3,12,3},{3,5,9}};
 	int first_node = nodes[0];
 	Graph* my_graph = new Graph(first_node);
 	my_graph = populate_graph(my_graph,nodes);
@@ -44,7 +44,7 @@ int main(){
 	cout << "Printing adj matrix" << endl;
 	for (int i = 0; i < my_graph->adj_matrix->size(); i++){
 		for (int j = 0; j < my_graph->adj_matrix->at(i).size(); j++){
-			bool is_connected = my_graph->adj_matrix->at(i).at(j);
+			int is_connected = my_graph->adj_matrix->at(i).at(j);
 			cout << is_connected << " ";
 		}
 		cout << endl;

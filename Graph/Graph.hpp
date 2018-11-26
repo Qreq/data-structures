@@ -12,11 +12,11 @@
 class Graph{
 	public:
 	std::set<int> vertices;
-	std::set<std::array<int,2>> edges;
-	std::vector<std::vector<bool>>* adj_matrix;
+	std::set<std::array<int,3>> edges;
+	std::vector<std::vector<int>>* adj_matrix;
 	Graph(int);
 	void add_vertice(int);
-	void add_edge(std::array<int,2>);
+	void add_edge(std::array<int,3>);
 	void populate_matrix_false();
 	void matrix_connections();
 	bool is_path(int,int,std::set<int>);
