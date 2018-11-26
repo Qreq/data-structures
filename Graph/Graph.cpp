@@ -154,3 +154,7 @@ std::set<int> Graph::trav_bfs(int start_vert){
 	}
 	return visited;
 }
+bool Graph::is_connected(int start_vert){
+	std::set<int> dfs_order = trav_dfs(start_vert);
+	return (dfs_order == this->vertices) ? true : false;
+}

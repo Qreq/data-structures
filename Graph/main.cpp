@@ -1,5 +1,6 @@
 #include "Graph.hpp"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 Graph* populate_graph(Graph* graph, vector<int> nodes){
@@ -21,6 +22,16 @@ void adjacency_matrix(Graph* graph){
 	graph->populate_matrix_false();
 	graph->matrix_connections();
 }
+void save_dfs_file(set<int> path){
+	ofstream dfs_file;
+	dfs_file.open("dfs.txt");
+	//TODO: iterate over set to pritn to txt
+	for (int vertice : path){
+		dfs_file << vertice + " ";
+	}
+	dfs_file << endl;
+	dfs_file.close();
+}
 int main(){
 	vector<int> nodes = {3,5,7,4,6,7,12,1,2,4,6,7};
 	set<array<int,2>> edges = {{4,6},{1,4},{3,7},{12,5},{2,6},{2,7},{3,12},{3,5}};
@@ -38,12 +49,23 @@ int main(){
 		}
 		cout << endl;
 	}
-	
+	/*
 	if (my_graph->is_path(1,6,{})){
 		cout << "Yes" << endl;
 	}
 	else{
 		cout << "No" << endl;
 	}
+	*/
+	set<int> dfs_result = my_graph->trav_dfs(3);
+	set<int> bfs_result = my_graph->trav_bfs(2);
+	bool is_connected = my_graph->is_connected(3);
+	if (is_connected){
+		cout << "yes" << endl;
+	}
+	else{
+		cout << "no" << endl;
+	}
+	//save_dfs_file(dfs_result);
 	return 0;
 }
