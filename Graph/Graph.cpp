@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <stack>
 #include "Graph.hpp"
  /*
   * 
@@ -54,19 +55,73 @@ void Graph::matrix_connections(){
 		x++;
 	}
 }
-bool Graph::is_path(int start, int end, std::vector<int> checked_vertices){
+bool Graph::is_path(int start, int end, std::set<int> checked_vertices){
 	if (start == end){
 		return true;
 	}
+	checked_vertices.insert(start);
+	
 	ptrdiff_t connection_line = std::distance(this->vertices.begin(), std::find(this->vertices.begin(),this->vertices.end(),start));
 	std::cout << "CONNECTION_LINE = " << connection_line << std::endl;
-	ptrdiff_t connected_index = std::distance(this->adj_matrix->at(connection_line).begin(), std::find(this->adj_matrix->at(connection_line).begin(),this->adj_matrix->at(connection_line).end(),true));
-	std::cout << "CONNECTED = " << connected_index << std::endl;
 	
+	auto matr_it = this->adj_matrix->at(connection_line).begin();
+	bool all_vertices_used = true;
 	std::set<int>::iterator vert_iter = this->vertices.begin();
+	std::cout << checked_vertices.size() << std::endl;
 	
+	//
+	//
+	//
+	
+	ptrdiff_t connected_index = std::distance(this->adj_matrix->at(connection_line).begin(), std::find(matr_it,this->adj_matrix->at(connection_line).end(),true));
+	std::cout << "size of checked = "<< checked_vertices.size() << std::endl;
 	std::advance(vert_iter,connected_index);
+	std::set<int>::iterator used_vert_iter = checked_vertices.begin();
+	for (used_vert_iter; used_vert_iter != checked_vertices.end(); used_vert_iter++){
+		std::cout << "i = " << *used_vert_iter << std::endl;
+		if (*vert_iter == *used_vert_iter){
+			std::cout << "duplicate" << std::endl;
+			matr_it = std::find(this->adj_matrix->at(connection_line).begin(),this->adj_matrix->at(connection_line).end(),*vert_iter);
+			matr_it++;
+		}
+		/*
+		else(used_vert_iter != checked_vertices.end()){
+			std::cout << "got here" << std::endl;
+			all_vertices_used = false;
+		}
+		*/
+	}
+	if (all_vertices_used){
+		return false;
+	}
+	//std::cout << "CONNECTED TO ==== " << *vert_iter << std::endl;
 	
 	
 	return is_path(*vert_iter,end,checked_vertices);
+}
+std::vector<int> Graph::trav_dfs(int start_vert){
+	std::stack<int> mystack;
+	std::vector<int> visited;
+	mystack.push(start_vert);
+	while(!mystack.empty()){
+		int vert_to_check = mystack.top();
+		mystack.pop();
+		bool has_visit = false;
+		for (int i = 0; i < visited.size(); i++){
+			if (vert_to_check == visited[i]){
+				has_visit = true;
+			}
+		}
+		std::cout << "visited = " << has_visit << std::endl;
+		if(!has_visit){
+			visited.emplace_back(vert_to_check);
+			for (std::array<int,2> edge : this->edges){
+				if (edge[0] == vert_to_check){
+					auto next_vert = edge.end();
+					mystack.push(*next_vert);
+				}
+			}
+		}
+	}
+	return visited;
 }
