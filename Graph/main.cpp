@@ -23,13 +23,20 @@ void adjacency_matrix(Graph* graph){
 	graph->populate_matrix_false();
 	graph->matrix_connections();
 }
+
 void save_path_file(set<int> path){
-	fstream outfile ("aaaaa.txt", fstream::out);
-
-	outfile << "my text here!" << endl;
-
-	outfile.close();
+	
+	ofstream path_file ("path.txt");
+	
+	std::set<int>::iterator path_iter = path.begin();
+	
+	for (path_iter; path_iter != path.end(); path_iter++){
+		path_file << *path_iter << " ";
+	}
+	path_file.close();
+	
 }	
+
 int main(){
 	vector<int> nodes = {3,5,7,4,6,7,12,1,2,4,6,7};
 	set<array<int,3>> edges = {{4,6,3},{1,4,3},{3,7,6},{12,5,2},{2,6,4},{2,7,8},{3,12,3},{3,5,9}};
@@ -63,6 +70,7 @@ int main(){
 	else{
 		cout << "connected: no" << endl;
 	}
+	cout<<"callig the save method"<<endl;
 	save_path_file(dfs_result);
 	return 0;
 }
