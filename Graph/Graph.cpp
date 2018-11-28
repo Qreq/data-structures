@@ -10,6 +10,8 @@
   * REFERENCE: DFS & BFS pseudocode written by Diana Hintea available here: https://cumoodle.coventry.ac.uk/pluginfile.php/2463345/mod_resource/content/0/Week%207%20Lecture%20-%20More%20Graphs.pdf
 	  * DFS - Week 7 Slide 5
 	  * BFS - Week 7 Slide 10
+  * REFERENCE: Dijstra algorithm pseudocode found here: http://www.gitta.info/Accessibiliti/en/html/Dijkstra_learningObject1.html
+  *
   */
 Graph::Graph(int vertice){
 	this->vertices.insert(vertice);
@@ -58,49 +60,34 @@ void Graph::matrix_connections(){
 		x++;
 	}
 }
-bool Graph::is_path(int start, int end, std::set<int> checked_vertices){
-	if (start == end){
-		return true;
-	}
-	checked_vertices.insert(start);
-	
-	ptrdiff_t connection_line = std::distance(this->vertices.begin(), std::find(this->vertices.begin(),this->vertices.end(),start));
-	std::cout << "CONNECTION_LINE = " << connection_line << std::endl;
-	
-	auto matr_it = this->adj_matrix->at(connection_line).begin();
-	bool all_vertices_used = true;
-	std::set<int>::iterator vert_iter = this->vertices.begin();
-	std::cout << checked_vertices.size() << std::endl;
-	
-	//
-	//
-	//
-	
-	ptrdiff_t connected_index = std::distance(this->adj_matrix->at(connection_line).begin(), std::find(matr_it,this->adj_matrix->at(connection_line).end(),true));
-	std::cout << "size of checked = "<< checked_vertices.size() << std::endl;
-	std::advance(vert_iter,connected_index);
-	std::set<int>::iterator used_vert_iter = checked_vertices.begin();
-	for (used_vert_iter; used_vert_iter != checked_vertices.end(); used_vert_iter++){
-		std::cout << "i = " << *used_vert_iter << std::endl;
-		if (*vert_iter == *used_vert_iter){
-			std::cout << "duplicate" << std::endl;
-			matr_it = std::find(this->adj_matrix->at(connection_line).begin(),this->adj_matrix->at(connection_line).end(),*vert_iter);
-			matr_it++;
+bool Graph::is_path(int start, int end){
+	std::stack<int> vertices;
+	std::set<int> visited;
+	vertices.push(start);
+	while(!vertices.empty()){
+		int vert_to_check = vertices.top();
+		vertices.pop();
+		bool has_visit = false;
+		std::set<int>::iterator vert_iter = visited.begin();
+		for (vert_iter; vert_iter !=  visited.end(); vert_iter++){
+			if (vert_to_check == *vert_iter){
+				has_visit = true;
+			}
 		}
-		/*
-		else(used_vert_iter != checked_vertices.end()){
-			std::cout << "got here" << std::endl;
-			all_vertices_used = false;
+		if(!has_visit){
+			visited.insert(vert_to_check);
+			for (std::array<int,3> edge : this->edges){
+				if (edge[1] == vert_to_check && edge[0] == start){
+					return true;
+				}
+				if (edge[1] == vert_to_check){
+					int next_vert = edge[1];
+					vertices.push(next_vert);
+				}
+			}
 		}
-		*/
 	}
-	if (all_vertices_used){
-		return false;
-	}
-	//std::cout << "CONNECTED TO ==== " << *vert_iter << std::endl;
-	
-	
-	return is_path(*vert_iter,end,checked_vertices);
+	return false;
 }
 std::set<int> Graph::trav_dfs(int start_vert){
 	std::stack<int> vertices;
@@ -157,4 +144,40 @@ std::set<int> Graph::trav_bfs(int start_vert){
 bool Graph::is_connected(int start_vert){
 	std::set<int> dfs_order = trav_dfs(start_vert);
 	return (dfs_order == this->vertices) ? true : false;
+}
+
+std::vector<int> Graph::dijkstra(int start_vert){
+	std::vector<int> distance,previous;
+	
+	for (int vertex : this->vertices){
+		//REFERENCE: max val of int found here: https://stackoverflow.com/a/8690690
+		int max_val = std::numeric_limits<int>::max();
+		distance[vertex] = max_val;
+		previous[vertex] = nullptr;
+	}
+	distance[start_vert] = 0;
+	std::set<int> all_nodes = this->vertices;
+	while(!all_nodes.empty()){
+		std::set<int>::iterator vert_iter = all_nodes.begin();
+		int smallest_distance_vert = *vert_iter;
+		//finds smallest distance from all vertices
+		for (vert_iter; vert_ter != all_nodes.end(); vert_iter++){
+			if (*vert_iter < smallest_distance_vert){
+				smallest_distance_vert = *vert_iter;
+			}
+		}
+		all_nodes.erase(smallest_distance_vert);
+		
+		for (std::array<3> edge : this->edges){
+			if (edge[0] == smallest_distance_vert){
+				int distance_to_add = distance[smallest_distance_vert] + edge[2];
+				int adjacent_vertice = edge[1]
+				if (distance_to_add < distance[adjacent_vertice]){
+					distance[adjacent_vertice] = distance_to_add;
+					previous[adjacent_vertice] = smallest_distance_vert;
+				}
+			}
+		}	
+	}
+	return vector;
 }

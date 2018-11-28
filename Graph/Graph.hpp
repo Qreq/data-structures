@@ -19,9 +19,10 @@ class Graph{
 	void add_edge(std::array<int,3>);
 	void populate_matrix_false();
 	void matrix_connections();
-	bool is_path(int,int,std::set<int>);
+	bool is_path(int,int);
 	bool is_connected(int);
 	std::set<int> trav_dfs(int);
 	std::set<int> trav_bfs(int);
+	std::vector<int> dijkstra(int);
 };
 #endif
