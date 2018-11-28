@@ -124,23 +124,27 @@ void remove_childless_node(BinTreeNode* node_to_remove){
 	else if (node_to_remove->parent->right == node_to_remove){
 		node_to_remove->parent->right = nullptr;
 	}
-	node_to_remove = nullptr;
+	delete node_to_remove;
 }
 void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove){
 	//removes node from tree, swapping the place of child to it's parent
-	BinTreeNode* temp_swap = node_to_remove;
-	if (node_to_remove->left != nullptr){
-		node_to_remove = node_to_remove->left;
+	if (parent_of_remove->left == node_to_remove){
+		if (node_to_remove->left != nullptr){
+			parent_of_remove->left = node_to_remove->right;
+		}
+		else{
+			parent_of_remove->left = node_to_remove->left;
+		}
 	}
-	else if (node_to_remove->right != nullptr){
-		node_to_remove = node_to_remove->right;
+	else if (parent_of_remove->right == node_to_remove){
+		if (node_to_remove->left != nullptr){
+			parent_of_remove->right = node_to_remove->right;
+		}
+		else{
+			parent_of_remove->right = node_to_remove->left;
+		}
 	}
-	if (parent_of_remove->left == temp_swap){
-		parent_of_remove->left = node_to_remove;
-	}
-	else if (parent_of_remove->right == temp_swap){
-		parent_of_remove->right = node_to_remove;
-	}
+	delete node_to_remove;
 }
 string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
 	//finds max value on lfet subtree of node to remove, swaps it with the removal node, and deletes the duplicate value
@@ -156,13 +160,7 @@ string find_max_from_left(BinTreeNode* node_to_remove, string max_value){
 	}
 	return max_value;	
 }
-void remove_two_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_remove, BinTreeNode* tree){
-	string max_value = find_max_from_left(node_to_remove->left,node_to_remove->left->value);
-	cout << "Max Value = " << max_value << endl;
-	BinTreeNode* duplicate_node = find_node(tree,max_value);
-	node_to_remove->value = max_value;
-	duplicate_node = nullptr;
-}
+
 BinTreeNode* remove_node(BinTreeNode* tree, string node_to_find){
 	BinTreeNode* node_to_remove = find_node(tree,node_to_find);
 	if (node_to_remove == nullptr){
@@ -177,7 +175,11 @@ BinTreeNode* remove_node(BinTreeNode* tree, string node_to_find){
 			remove_one_child_node(node_to_remove->parent,node_to_remove);
 			break;
 		case 2:
-			remove_two_child_node(node_to_remove->parent,node_to_remove,tree);
+			string max_value = find_max_from_left(node_to_remove->left,node_to_remove->left->value);
+			cout << "Max Value = " << max_value << endl;
+			BinTreeNode* duplicate_node = find_node(tree,max_value);
+			node_to_remove->value = max_value;
+			remove_node(duplicate_node,max_value); 
 			break;
 	}
 	return tree;

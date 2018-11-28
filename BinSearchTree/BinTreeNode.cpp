@@ -8,3 +8,6 @@ BinTreeNode::BinTreeNode(std::string word,BinTreeNode* parent){
 	this->frequency_of_node = 1;
 	this->parent = parent;
 }
+BinTreeNode::~BinTreeNode(){
+	std::cout << "deleted" << std::endl;
+}
