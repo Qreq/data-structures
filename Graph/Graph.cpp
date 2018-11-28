@@ -60,35 +60,6 @@ void Graph::matrix_connections(){
 		x++;
 	}
 }
-bool Graph::is_path(int start, int end){
-	std::stack<int> vertices;
-	std::set<int> visited;
-	vertices.push(start);
-	while(!vertices.empty()){
-		int vert_to_check = vertices.top();
-		vertices.pop();
-		bool has_visit = false;
-		std::set<int>::iterator vert_iter = visited.begin();
-		for (vert_iter; vert_iter !=  visited.end(); vert_iter++){
-			if (vert_to_check == *vert_iter){
-				has_visit = true;
-			}
-		}
-		if(!has_visit){
-			visited.insert(vert_to_check);
-			for (std::array<int,3> edge : this->edges){
-				if (edge[1] == vert_to_check && edge[0] == start){
-					return true;
-				}
-				if (edge[1] == vert_to_check){
-					int next_vert = edge[1];
-					vertices.push(next_vert);
-				}
-			}
-		}
-	}
-	return false;
-}
 std::set<int> Graph::trav_dfs(int start_vert){
 	std::stack<int> vertices;
 	std::set<int> visited;
@@ -180,4 +151,14 @@ std::vector<int> Graph::dijkstra(int start_vert){
 		}	
 	}
 	return previous;
+}
+bool Graph::is_path(int start, int end){
+	std::set<int> path_traversed = trav_bfs(start);
+	std::set<int>::iterator path_iter = path_traversed.begin();
+	for (path_iter; path_iter != path_traversed.end(); path_iter++){
+		if (*path_iter == end){
+			return true;
+		}
+	}
+	return false;
 }
