@@ -153,7 +153,7 @@ std::vector<int> Graph::dijkstra(int start_vert){
 		//REFERENCE: max val of int found here: https://stackoverflow.com/a/8690690
 		int max_val = std::numeric_limits<int>::max();
 		distance[vertex] = max_val;
-		previous[vertex] = nullptr;
+		previous[vertex] = 0;
 	}
 	distance[start_vert] = 0;
 	std::set<int> all_nodes = this->vertices;
@@ -161,17 +161,17 @@ std::vector<int> Graph::dijkstra(int start_vert){
 		std::set<int>::iterator vert_iter = all_nodes.begin();
 		int smallest_distance_vert = *vert_iter;
 		//finds smallest distance from all vertices
-		for (vert_iter; vert_ter != all_nodes.end(); vert_iter++){
+		for (vert_iter; vert_iter != all_nodes.end(); vert_iter++){
 			if (*vert_iter < smallest_distance_vert){
 				smallest_distance_vert = *vert_iter;
 			}
 		}
 		all_nodes.erase(smallest_distance_vert);
 		
-		for (std::array<3> edge : this->edges){
+		for (std::array<int,3> edge : this->edges){
 			if (edge[0] == smallest_distance_vert){
 				int distance_to_add = distance[smallest_distance_vert] + edge[2];
-				int adjacent_vertice = edge[1]
+				int adjacent_vertice = edge[1];
 				if (distance_to_add < distance[adjacent_vertice]){
 					distance[adjacent_vertice] = distance_to_add;
 					previous[adjacent_vertice] = smallest_distance_vert;
@@ -179,5 +179,5 @@ std::vector<int> Graph::dijkstra(int start_vert){
 			}
 		}	
 	}
-	return vector;
+	return previous;
 }
