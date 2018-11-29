@@ -70,7 +70,8 @@ int main(){
 	else{
 		cout << "connected: no" << endl;
 	}
-	cout<<"callig the save method"<<endl;
 	save_path_file(dfs_result);
+	
+	delete my_graph;
 	return 0;
 }
