@@ -1,2 +1,4 @@
 To run main code:
 	g++ --std=c++14 main.cpp Graph.cpp Graph.hpp -o main && ./main
+To run unit tests:
+	g++ --std=c++14 UT-INIT.cpp UNITTESTS.cpp Graph.cpp -o tests && ./tests
