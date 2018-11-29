@@ -28,7 +28,7 @@ void Graph::add_edge(std::array<int,3> new_edge){
 	std::array<int,3> reverse_edge = {new_edge[1],new_edge[0],new_edge[2]};
 	this->edges.emplace(reverse_edge);
 }
-void Graph::populate_matrix_false(){
+void Graph::populate_matrix_zero(){
 	for (int i = 0; i < this->vertices.size(); i++){
 		std::vector<int> connections;
 		for (int j = 0; j < this->vertices.size(); j++){

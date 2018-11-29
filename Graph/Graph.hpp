@@ -17,7 +17,7 @@ class Graph{
 	Graph(int);
 	void add_vertice(int);
 	void add_edge(std::array<int,3>);
-	void populate_matrix_false();
+	void populate_matrix_zero();
 	void matrix_connections();
 	bool is_connected(int);
 	std::set<int> trav_dfs(int);

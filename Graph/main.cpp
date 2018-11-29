@@ -20,7 +20,7 @@ Graph* populate_edges(Graph* graph, set<array<int,3>> edges){
 	return graph;
 }
 void adjacency_matrix(Graph* graph){
-	graph->populate_matrix_false();
+	graph->populate_matrix_zero();
 	graph->matrix_connections();
 }
 
