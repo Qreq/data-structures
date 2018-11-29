@@ -175,3 +175,19 @@ TEST_CASE("Removes Node with One Child"){
 	REQUIRE(tree3_1child_removed == nullptr);
 	REQUIRE(tree3_parent_of_removed->right == tree3_do_new_right);
 }
+
+TEST_CASE("Removes Node with Two Children"){
+	BinTreeNode* tree2_2children = remove_node(binarytree2, "I");
+	BinTreeNode* tree2_2children_removed = find_node(tree2_2children, "I");
+	BinTreeNode* tree2_new_parent = find_node(tree2_2children, "Coventry");
+	REQUIRE(tree2_2children_removed == nullptr);
+	REQUIRE(tree2_new_parent->left->value == "Computer");
+	REQUIRE(tree2_new_parent->right->value == "really");
+	
+	BinTreeNode* tree3_2children = remove_node(binarytree3, "Unit");
+	BinTreeNode* tree3_2children_removed = find_node(tree3_2children, "Unit");
+	BinTreeNode* tree3_new_parent = find_node(tree3_2children, "Tests");
+	REQUIRE(tree3_2children_removed == nullptr);
+	REQUIRE(tree3_new_parent->left == nullptr);
+	REQUIRE(tree3_new_parent->right->value == "are");
+}
