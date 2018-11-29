@@ -70,8 +70,8 @@ TEST_CASE("Finds a Node in the Binary Tree"){
 	BinTreeNode* node_found1_edge_true = find_node(binarytree1, "the");
 	BinTreeNode* node_found1_edge_false = find_node(binarytree1, "First");
 	
-	//REQUIRE(node_found1_true->value == "first");
-	//REQUIRE(node_found1_false == nullptr);
+	REQUIRE(node_found1_true->value == "first");
+	REQUIRE(node_found1_false == nullptr);
 	REQUIRE(node_found1_edge_true->value == "the");
 	REQUIRE(node_found1_edge_false == nullptr);
 	
@@ -94,3 +94,31 @@ TEST_CASE("Finds a Node in the Binary Tree"){
 	REQUIRE(node_found3_edge_false == nullptr);
 }
 
+TEST_CASE("Counts Number of Children on a Node"){
+	BinTreeNode* tree1_node_0children = find_node(binarytree1, "first");
+	BinTreeNode* tree1_node_2children = find_node(binarytree1, "is");
+	int num_children_tree1_0 = count_children(tree1_node_0children);
+	int num_children_tree1_2 = count_children(tree1_node_2children);
+	REQUIRE(num_children_tree1_0 == 0);
+	REQUIRE(num_children_tree1_2 == 2);
+	
+	BinTreeNode* tree2_node_0children = find_node(binarytree2, "Coventry");
+	BinTreeNode* tree2_node_1child = find_node(binarytree2, "Science");
+	BinTreeNode* tree2_node_2children = find_node(binarytree2, "do");
+	int num_children_tree2_0 = count_children(tree2_node_0children);
+	int num_children_tree2_1 = count_children(tree2_node_1child);
+	int num_children_tree2_2 = count_children(tree2_node_2children);
+	REQUIRE(num_children_tree2_0 == 0);
+	REQUIRE(num_children_tree2_1 == 1);
+	REQUIRE(num_children_tree2_2 == 2);
+	
+	BinTreeNode* tree3_node_0children = find_node(binarytree3, "writing");
+	BinTreeNode* tree3_node_1child = find_node(binarytree3, "are");
+	BinTreeNode* tree3_node_2children = find_node(binarytree3, "extremely");
+	int num_children_tree3_0 = count_children(tree3_node_0children);
+	int num_children_tree3_1 = count_children(tree3_node_1child);
+	int num_children_tree3_2 = count_children(tree3_node_2children);
+	REQUIRE(num_children_tree3_0 == 0);
+	REQUIRE(num_children_tree3_1 == 1);
+	REQUIRE(num_children_tree3_2 == 2);
+}
