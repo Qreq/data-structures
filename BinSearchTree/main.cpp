@@ -46,7 +46,8 @@ void binary_tree_using_textfile(){
 	binarytree = remove_node(binarytree,"I"); //childless
 	binarytree = remove_node(binarytree,"until");//one child
 	binarytree = remove_node(binarytree,"is");//two children
-	BinTreeNode* result_of_find_node = find_node(binarytree,"is");
+	delete binarytree;
+	delete result_of_find_node;
 }
 int main(){
 	cout << "USING TEXT FILE" << endl;
