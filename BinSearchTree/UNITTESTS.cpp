@@ -159,3 +159,19 @@ TEST_CASE("Removes Node with No Children"){
 	REQUIRE(tree3_0children_removed == nullptr);
 	REQUIRE(tree3_parent_of_removed->right == nullptr);
 }
+
+TEST_CASE("Removes Node with One Child"){
+	BinTreeNode* tree2_1child = remove_node(binarytree2, "Science");
+	BinTreeNode* tree2_1child_removed = find_node(tree2_1child, "Science");
+	BinTreeNode* tree2_parent_of_removed = find_node(tree2_1child, "do");
+	BinTreeNode* tree2_do_new_left = find_node(tree2_1child, "at");
+	REQUIRE(tree2_1child_removed == nullptr);
+	REQUIRE(tree2_parent_of_removed->left == tree2_do_new_left);
+	
+	BinTreeNode* tree3_1child = remove_node(binarytree3, "important");
+	BinTreeNode* tree3_1child_removed = find_node(tree3_1child, "important");
+	BinTreeNode* tree3_parent_of_removed = find_node(tree3_1child, "extremely");
+	BinTreeNode* tree3_do_new_right = find_node(tree3_1child, "when");
+	REQUIRE(tree3_1child_removed == nullptr);
+	REQUIRE(tree3_parent_of_removed->right == tree3_do_new_right);
+}
