@@ -133,18 +133,18 @@ void remove_one_child_node(BinTreeNode* parent_of_remove, BinTreeNode* node_to_r
 	//removes node from tree, swapping the place of child to it's parent
 	if (parent_of_remove->left == node_to_remove){
 		if (node_to_remove->left != nullptr){
-			parent_of_remove->left = node_to_remove->right;
+			parent_of_remove->left = node_to_remove->left;
 		}
 		else{
-			parent_of_remove->left = node_to_remove->left;
+			parent_of_remove->left = node_to_remove->right;
 		}
 	}
 	else if (parent_of_remove->right == node_to_remove){
 		if (node_to_remove->left != nullptr){
-			parent_of_remove->right = node_to_remove->right;
+			parent_of_remove->right = node_to_remove->left;
 		}
 		else{
-			parent_of_remove->right = node_to_remove->left;
+			parent_of_remove->right = node_to_remove->right;
 		}
 	}
 	delete node_to_remove;
