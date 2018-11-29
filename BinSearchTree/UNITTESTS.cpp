@@ -139,3 +139,23 @@ TEST_CASE("Finds Max Value on Left of desired node"){
 	std::string tree3_max_val = find_max_from_left(tree3_root->left, tree3_root->left->value);
 	REQUIRE(tree3_max_val == "Tests");
 }
+
+TEST_CASE("Removes Node with No Children"){
+	BinTreeNode* tree1_0children = remove_node(binarytree1, "first");
+	BinTreeNode* tree1_0children_removed = find_node(tree1_0children, "first");
+	BinTreeNode* tree1_parent_of_removed = find_node(tree1_0children, "is");
+	REQUIRE(tree1_0children_removed == nullptr);
+	REQUIRE(tree1_parent_of_removed->left == nullptr);
+	
+	BinTreeNode* tree2_0children = remove_node(binarytree2, "enjoy");
+	BinTreeNode* tree2_0children_removed = find_node(tree2_0children, "enjoy");
+	BinTreeNode* tree2_parent_of_removed = find_node(tree2_0children, "do");
+	REQUIRE(tree2_0children_removed == nullptr);
+	REQUIRE(tree2_parent_of_removed->right == nullptr);
+	
+	BinTreeNode* tree3_0children = remove_node(binarytree3, "writing");
+	BinTreeNode* tree3_0children_removed = find_node(tree3_0children, "writing");
+	BinTreeNode* tree3_parent_of_removed = find_node(tree3_0children, "when");
+	REQUIRE(tree3_0children_removed == nullptr);
+	REQUIRE(tree3_parent_of_removed->right == nullptr);
+}
