@@ -122,3 +122,20 @@ TEST_CASE("Counts Number of Children on a Node"){
 	REQUIRE(num_children_tree3_1 == 1);
 	REQUIRE(num_children_tree3_2 == 2);
 }
+
+TEST_CASE("Finds Max Value on Left of desired node"){
+	BinTreeNode* tree1_2children = find_node(binarytree1, "is");
+	std::string tree1_max_val = find_max_from_left(tree1_2children->left, tree1_2children->left->value);
+	REQUIRE(tree1_max_val == "first");
+	
+	BinTreeNode* tree2_root = find_node(binarytree2, "I");
+	BinTreeNode* tree2_do_node = find_node(binarytree2, "do");
+	std::string tree2_max_val = find_max_from_left(tree2_root->left, tree2_root->left->value);
+	std::string tree2_do_max_val = find_max_from_left(tree2_do_node->left, tree2_do_node->left->value);
+	REQUIRE(tree2_max_val == "Coventry");
+	REQUIRE(tree2_do_max_val == "at");
+	
+	BinTreeNode* tree3_root = find_node(binarytree3, "Unit");
+	std::string tree3_max_val = find_max_from_left(tree3_root->left, tree3_root->left->value);
+	REQUIRE(tree3_max_val == "Tests");
+}
