@@ -47,14 +47,17 @@ BinTreeNode* find_node(BinTreeNode* tree, string node_to_find){
 	if (tree->value == node_to_find){
 		return tree;
 	}
-	else if ((tree->right == nullptr && tree->left == nullptr) || tree == nullptr){
-		return nullptr;
-	}
 	else if (tree->value > node_to_find){
+		if (tree->left == nullptr){
+			return nullptr;
+		}
 		cout << "Traversing Left on Tree from " << tree->value << " to " << tree->left->value << endl;
 		return find_node(tree->left,node_to_find);
 	}
 	else{
+		if (tree->right == nullptr){
+			return nullptr;
+		}
 		cout << "Traversing Right on Tree from " << tree->value << " to " << tree->right->value << endl;
 		return find_node(tree->right,node_to_find);	
 	}
